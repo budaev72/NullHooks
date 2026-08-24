@@ -1,0 +1,22 @@
+name: Build DLL
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Add MSBuild to PATH
+      uses: microsoft/setup-msbuild@v1.1
+
+    - name: Build Solution
+      run: msbuild /p:Configuration=Release /p:Platform=x86
+
+    - name: Upload DLL
+      uses: actions/upload-artifact@v3
+      with:
+        name: Compiled-DLL
+        path: '**/*.dll'
