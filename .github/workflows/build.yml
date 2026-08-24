@@ -4,19 +4,19 @@ on: [push, workflow_dispatch]
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-2022
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Add MSBuild to PATH
-      uses: microsoft/setup-msbuild@v1.1
+      uses: microsoft/setup-msbuild@v2
 
     - name: Build Solution
-      run: msbuild /p:Configuration=Release /p:Platform=x86
+      run: msbuild /p:Configuration=Release /p:Platform=x86 /p:PlatformToolSet=v143
 
     - name: Upload DLL
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: Compiled-DLL
         path: '**/*.dll'
