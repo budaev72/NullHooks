@@ -1,0 +1,16 @@
+image: Visual Studio 2022
+
+configuration:
+  - Release
+
+platform:
+  - x86
+
+build:
+  project: NullHooks.sln
+  verbosity: minimal
+
+artifacts:
+  - path: '**\*.dll'
+    name: Compiled-DLL
+    
